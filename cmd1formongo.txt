@@ -1,0 +1,1 @@
+mongod --dbpath "C:/New" --bind_ip localhost
