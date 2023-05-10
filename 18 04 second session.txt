@@ -1,0 +1,394 @@
+use db2
+Database changed
+mysql> select * form books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'form books' at line 1
+mysql> select * from books;
++--------+------------+-----------+------+
+| bookID | bookName   | Type      | Cost |
++--------+------------+-----------+------+
+|      1 | DS         | Hardcover |  950 |
+|      1 | DS         | Hardcover |  950 |
+|      2 | JavaScript | Paperback |  700 |
+|      2 | JavaScript | Paperback |  700 |
+|      3 | Hbase      | Paperback |  760 |
++--------+------------+-----------+------+
+5 rows in set (0.02 sec)
+
+mysql>
+
+-----------------------------------------------------------------------------
+
+mysql> select deptno from emp;
++--------+
+| deptno |
++--------+
+|     10 |
+|     10 |
+|     10 |
+|     10 |
+|     10 |
+|     20 |
+|     20 |
+|     20 |
+|     20 |
+|     20 |
+|     20 |
+|     20 |
+|     20 |
+|     30 |
+|     30 |
+|     30 |
+|     30 |
+|     30 |
+|     30 |
+|     30 |
+|     30 |
+|     30 |
+|     30 |
+|     30 |
+|     30 |
+|     50 |
+|     50 |
+|     50 |
++--------+
+28 rows in set (0.02 sec)
+
+mysql> select deptno from dept;
++--------+
+| deptno |
++--------+
+|     10 |
+|     20 |
+|     30 |
+|     40 |
+|     50 |
++--------+
+5 rows in set (0.00 sec)
+
+mysql> select deptno R1 from emp  union  select deptno R2 from dept;
++----+
+| R1 |
++----+
+| 10 |
+| 20 |
+| 30 |
+| 50 |
+| 40 |
++----+
+5 rows in set (0.00 sec)
+
+mysql> select deptno R1 from emp  intersect  select deptno R2 from dept;
++----+
+| R1 |
++----+
+| 10 |
+| 20 |
+| 30 |
+| 50 |
++----+
+4 rows in set (0.00 sec)
+
+mysql> select deptno R1 from emp  except  select deptno R2 from dept;
+Empty set (0.00 sec)
+
+mysql> select deptno R1 from dept  except  select deptno R2 from emp;
++----+
+| R1 |
++----+
+| 40 |
++----+
+1 row in set (0.00 sec)
+
+mysql> select deptno R1 from emp  union  select deptno R2 from dept;
++----+
+| R1 |
++----+
+| 10 |
+| 20 |
+| 30 |
+| 50 |
+| 40 |
++----+
+5 rows in set (0.00 sec)
+
+mysql> select deptno R1 from emp  union  all select deptno R2 from dept;
++----+
+| R1 |
++----+
+| 10 |
+| 10 |
+| 10 |
+| 10 |
+| 10 |
+| 20 |
+| 20 |
+| 20 |
+| 20 |
+| 20 |
+| 20 |
+| 20 |
+| 20 |
+| 30 |
+| 30 |
+| 30 |
+| 30 |
+| 30 |
+| 30 |
+| 30 |
+| 30 |
+| 30 |
+| 30 |
+| 30 |
+| 30 |
+| 50 |
+| 50 |
+| 50 |
+| 10 |
+| 20 |
+| 30 |
+| 40 |
+| 50 |
++----+
+33 rows in set (0.00 sec)
+
+mysql> select deptno R1 from emp  intersect  select deptno R2 from dept;
++----+
+| R1 |
++----+
+| 10 |
+| 20 |
+| 30 |
+| 50 |
++----+
+4 rows in set (0.00 sec)
+
+mysql> select deptno R1 from emp  intersect  all select deptno R2 from dept;
++----+
+| R1 |
++----+
+| 10 |
+| 20 |
+| 30 |
+| 50 |
++----+
+4 rows in set (0.00 sec)
+
+mysql> select * from books;
++--------+------------+-----------+------+
+| bookID | bookName   | Type      | Cost |
++--------+------------+-----------+------+
+|      1 | DS         | Hardcover |  950 |
+|      1 | DS         | Hardcover |  950 |
+|      2 | JavaScript | Paperback |  700 |
+|      2 | JavaScript | Paperback |  700 |
+|      3 | Hbase      | Paperback |  760 |
++--------+------------+-----------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from newbooks;
++--------+------------+-----------+------+
+| bookID | bookName   | Type      | Cost |
++--------+------------+-----------+------+
+|      1 | Redis      | Paperback |  850 |
+|      1 | Redis      | Paperback |  850 |
+|      2 | JavaScript | Paperback |  700 |
+|      2 | JavaScript | Paperback |  700 |
+|      4 | Hbase      | Paperback |  760 |
++--------+------------+-----------+------+
+5 rows in set (0.03 sec)
+
+mysql> select bookname R1 from books union select bookname R2 from newbooks;
++------------+
+| R1         |
++------------+
+| DS         |
+| JavaScript |
+| Hbase      |
+| Redis      |
++------------+
+4 rows in set (0.00 sec)
+
+mysql> select bookname R1 from books union all select bookname R2 from newbooks;
++------------+
+| R1         |
++------------+
+| DS         |
+| DS         |
+| JavaScript |
+| JavaScript |
+| Hbase      |
+| Redis      |
+| Redis      |
+| JavaScript |
+| JavaScript |
+| Hbase      |
++------------+
+10 rows in set (0.00 sec)
+
+mysql> select bookname R1 from books intersect select bookname R2 from newbooks;
++------------+
+| R1         |
++------------+
+| JavaScript |
+| Hbase      |
++------------+
+2 rows in set (0.00 sec)
+
+mysql> select bookname R1 from books intersect all select bookname R2 from newbooks;
++------------+
+| R1         |
++------------+
+| JavaScript |
+| JavaScript |
+| Hbase      |
++------------+
+3 rows in set (0.00 sec)
+
+mysql> select bookname R1 from books except select bookname R2 from newbooks;
++------+
+| R1   |
++------+
+| DS   |
++------+
+1 row in set (0.00 sec)
+
+mysql> select bookname R1 from newbooks except select bookname R2 from books;
++-------+
+| R1    |
++-------+
+| Redis |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select bookname R1 from newbooks except all select bookname R2 from books;
++-------+
+| R1    |
++-------+
+| Redis |
+| Redis |
++-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from books inner join newbooks on books.bookname = newbooks.bookname;
++--------+------------+-----------+------+--------+------------+-----------+------+
+| bookID | bookName   | Type      | Cost | bookID | bookName   | Type      | Cost |
++--------+------------+-----------+------+--------+------------+-----------+------+
+|      2 | JavaScript | Paperback |  700 |      2 | JavaScript | Paperback |  700 |
+|      2 | JavaScript | Paperback |  700 |      2 | JavaScript | Paperback |  700 |
+|      2 | JavaScript | Paperback |  700 |      2 | JavaScript | Paperback |  700 |
+|      2 | JavaScript | Paperback |  700 |      2 | JavaScript | Paperback |  700 |
+|      3 | Hbase      | Paperback |  760 |      4 | Hbase      | Paperback |  760 |
++--------+------------+-----------+------+--------+------------+-----------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from books left outer join newbooks on books.bookname = newbooks.bookname;
++--------+------------+-----------+------+--------+------------+-----------+------+
+| bookID | bookName   | Type      | Cost | bookID | bookName   | Type      | Cost |
++--------+------------+-----------+------+--------+------------+-----------+------+
+|      1 | DS         | Hardcover |  950 |   NULL | NULL       | NULL      | NULL |
+|      1 | DS         | Hardcover |  950 |   NULL | NULL       | NULL      | NULL |
+|      2 | JavaScript | Paperback |  700 |      2 | JavaScript | Paperback |  700 |
+|      2 | JavaScript | Paperback |  700 |      2 | JavaScript | Paperback |  700 |
+|      2 | JavaScript | Paperback |  700 |      2 | JavaScript | Paperback |  700 |
+|      2 | JavaScript | Paperback |  700 |      2 | JavaScript | Paperback |  700 |
+|      3 | Hbase      | Paperback |  760 |      4 | Hbase      | Paperback |  760 |
++--------+------------+-----------+------+--------+------------+-----------+------+
+7 rows in set (0.00 sec)
+
+mysql> select distinct * from books left outer join newbooks on books.bookname = newbooks.bookname;
++--------+------------+-----------+------+--------+------------+-----------+------+
+| bookID | bookName   | Type      | Cost | bookID | bookName   | Type      | Cost |
++--------+------------+-----------+------+--------+------------+-----------+------+
+|      1 | DS         | Hardcover |  950 |   NULL | NULL       | NULL      | NULL |
+|      2 | JavaScript | Paperback |  700 |      2 | JavaScript | Paperback |  700 |
+|      3 | Hbase      | Paperback |  760 |      4 | Hbase      | Paperback |  760 |
++--------+------------+-----------+------+--------+------------+-----------+------+
+3 rows in set (0.00 sec)
+
+mysql> select distinct * from books right outer join newbooks on books.bookname = newbooks.bookname;
++--------+------------+-----------+------+--------+------------+-----------+------+
+| bookID | bookName   | Type      | Cost | bookID | bookName   | Type      | Cost |
++--------+------------+-----------+------+--------+------------+-----------+------+
+|   NULL | NULL       | NULL      | NULL |      1 | Redis      | Paperback |  850 |
+|      2 | JavaScript | Paperback |  700 |      2 | JavaScript | Paperback |  700 |
+|      3 | Hbase      | Paperback |  760 |      4 | Hbase      | Paperback |  760 |
++--------+------------+-----------+------+--------+------------+-----------+------+
+3 rows in set (0.00 sec)
+
+mysql> select distinct * from books left outer join newbooks on books.bookname = newbooks.bookname  union select distinct * from books right outer join newbooks on books.bookname = newbooks.bookname;
++--------+------------+-----------+------+--------+------------+-----------+------+
+| bookID | bookName   | Type      | Cost | bookID | bookName   | Type      | Cost |
++--------+------------+-----------+------+--------+------------+-----------+------+
+|      1 | DS         | Hardcover |  950 |   NULL | NULL       | NULL      | NULL |
+|      2 | JavaScript | Paperback |  700 |      2 | JavaScript | Paperback |  700 |
+|      3 | Hbase      | Paperback |  760 |      4 | Hbase      | Paperback |  760 |
+|   NULL | NULL       | NULL      | NULL |      1 | Redis      | Paperback |  850 |
++--------+------------+-----------+------+--------+------------+-----------+------+
+4 rows in set (0.00 sec)
+
+mysql> select * from books;
++--------+------------+-----------+------+
+| bookID | bookName   | Type      | Cost |
++--------+------------+-----------+------+
+|      1 | DS         | Hardcover |  950 |
+|      1 | DS         | Hardcover |  950 |
+|      2 | JavaScript | Paperback |  700 |
+|      2 | JavaScript | Paperback |  700 |
+|      3 | Hbase      | Paperback |  760 |
++--------+------------+-----------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from newbooks;
++--------+------------+-----------+------+
+| bookID | bookName   | Type      | Cost |
++--------+------------+-----------+------+
+|      1 | Redis      | Paperback |  850 |
+|      1 | Redis      | Paperback |  850 |
+|      2 | JavaScript | Paperback |  700 |
+|      2 | JavaScript | Paperback |  700 |
+|      4 | Hbase      | Paperback |  760 |
++--------+------------+-----------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from books where bookname not in (select bookname from newbooks) ;
++--------+----------+-----------+------+
+| bookID | bookName | Type      | Cost |
++--------+----------+-----------+------+
+|      1 | DS       | Hardcover |  950 |
+|      1 | DS       | Hardcover |  950 |
++--------+----------+-----------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from books where bookname <> (select bookname from newbooks) ;
+ERROR 1242 (21000): Subquery returns more than 1 row
+mysql>
+mysql>
+mysql> select * from books where exists (select bookname from newbooks where books.bookname = newbooks.bookname);
++--------+------------+-----------+------+
+| bookID | bookName   | Type      | Cost |
++--------+------------+-----------+------+
+|      2 | JavaScript | Paperback |  700 |
+|      2 | JavaScript | Paperback |  700 |
+|      3 | Hbase      | Paperback |  760 |
++--------+------------+-----------+------+
+3 rows in set (0.01 sec)
+
+mysql> select * from books where not exists (select bookname from newbooks where books.bookname = newbooks.bookname);
++--------+----------+-----------+------+
+| bookID | bookName | Type      | Cost |
++--------+----------+-----------+------+
+|      1 | DS       | Hardcover |  950 |
+|      1 | DS       | Hardcover |  950 |
++--------+----------+-----------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from books where bookname not in (select bookname from newbooks) ;
++--------+----------+-----------+------+
+| bookID | bookName | Type      | Cost |
++--------+----------+-----------+------+
+|      1 | DS       | Hardcover |  950 |
+|      1 | DS       | Hardcover |  950 |
++--------+----------+-----------+------+
+2 rows in set (0.00 sec)
+
+mysql>

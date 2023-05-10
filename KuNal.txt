@@ -1,0 +1,23 @@
+drop procedure if exists a5
+delimiter $
+create procedure a5(str varchar(20))
+begin
+    declare subu varchar(20);
+    declare str1 varchar(20) default " ";
+    declare str2 varchar(20) default " ";
+    declare s varchar(20);
+    set x :=1;
+	lbl : loop
+    set s=substr(str,x,1);
+	set subu=ascii(s);
+              if subu between 65 and 90 then
+                  set str1 :=s;
+	          else if subu between 97 and 122 then
+                  set str2 :=s;
+              end if;
+                 if x>length(str) then 
+                      leave lbl;
+		     end if;
+	    set x :=x+1;
+     end loop lbl;
+delimiter;
